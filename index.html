@@ -124,7 +124,7 @@ body.no-clickzones .click-zones{display:none}
 .toast{position:fixed;top:1.5em;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.85);color:#fff;padding:.6em 1.4em;border-radius:999px;font-size:.9rem;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.show{opacity:1}
 @media(max-width:768px){.grid2,.grid3,.contrast2{grid-template-columns:1fr}}
-/* 互動：八組 QR ＋ 即時投稿頁 */
+/* 互動：六組 QR ＋ 即時投稿頁 */
 .qr-intro{max-width:none;margin:.25em 0 .55em;font-size:clamp(1.3rem,1.9vw,1.85rem);line-height:1.5;color:var(--color-text)}
 .qr-stage{display:flex;justify-content:center;align-items:center;gap:1.6vw;flex:1;min-height:0;width:100%}
 .qr-card{flex:1 1 0;max-width:240px;background:#fff;border-radius:20px;border-top:9px solid var(--c,#862633);box-shadow:var(--shadow-strong);padding:1.1em 1em 1.2em;display:flex;flex-direction:column;align-items:center;gap:.7em}
@@ -265,7 +265,7 @@ function showConfirm({title='確認',message='',okText='確定',cancelText='取�
   <div class="ornament"></div>
   <p class="lead">在問「人為何而活、該怎樣活、如何活出」之前，先回到那個最根本的提問——<b style="color:#fff">人，是什麼？</b></p>
   <button class="cover-cta kicker" onclick="startPresentation()">進入全螢幕．開始上課</button>
-  <div class="meta credit">孫效智　|　臺大生命教育研發育成中心　第十期師資培育學分班　|　台北班　Day 5</div>
+  <div class="meta credit">孫效智　|　臺大生命教育研發育成中心　第十期師資培育學分班　|　台南班　Day 5</div>
   <button class="back-home-btn kicker" style="margin-top:.6em;font-size:.72em;opacity:.55;background:none;border:none;text-decoration:underline;cursor:pointer;padding:0" onclick="goToSlide(document.querySelectorAll('.slide').length)">跳到最後一頁</button>
 </section>
 
@@ -317,8 +317,8 @@ function showConfirm({title='確認',message='',okText='確定',cancelText='取�
 
 <!-- QR 8組上傳 -->
 <section class="slide">
-  <h2>先分八組，交換你們的印證</h2>
-  <p class="lead qr-intro" style="text-align:left">沿用平時的分組。八組各派一位掃自己的 QR，把你們這一組討論出的<b>印證要點</b>打上來（可分多次送出）——它會即時出現在投影幕上你們這一組的頁面。</p>
+  <h2>先分六組，交換你們的印證</h2>
+  <p class="lead qr-intro" style="text-align:left">隨機分成六組。六組各派一位掃自己的 QR，把你們這一組討論出的<b>印證要點</b>打上來（可分多次送出）——它會即時出現在投影幕上你們這一組的頁面。</p>
   <div class="qr-stage">
     <div class="qr-card" style="--c:#862633"><div class="qr-box" data-tp="1"></div><div class="qr-cap">第1組</div></div>
     <div class="qr-card" style="--c:#A8782E"><div class="qr-box" data-tp="2"></div><div class="qr-cap">第2組</div></div>
@@ -326,29 +326,25 @@ function showConfirm({title='確認',message='',okText='確定',cancelText='取�
     <div class="qr-card" style="--c:#6B5635"><div class="qr-box" data-tp="4"></div><div class="qr-cap">第4組</div></div>
     <div class="qr-card" style="--c:#5C1A23"><div class="qr-box" data-tp="5"></div><div class="qr-cap">第5組</div></div>
     <div class="qr-card" style="--c:#3E7D5A"><div class="qr-box" data-tp="6"></div><div class="qr-cap">第6組</div></div>
-    <div class="qr-card" style="--c:#4A3B6B"><div class="qr-box" data-tp="7"></div><div class="qr-cap">第7組</div></div>
-    <div class="qr-card" style="--c:#B15C2E"><div class="qr-box" data-tp="8"></div><div class="qr-cap">第8組</div></div>
   </div>
   <p class="src" id="fbStatus" style="text-align:center">連線狀態</p>
 </section>
 
-<!-- 八組即時頁 -->
+<!-- 六組即時頁 -->
 <section class="slide gpage" style="--c:#862633"><h2><span class="g-dot"></span>第1組 · 相互為用的印證</h2><div class="gbox" id="pg1"></div></section>
 <section class="slide gpage" style="--c:#A8782E"><h2><span class="g-dot"></span>第2組 · 相互為用的印證</h2><div class="gbox" id="pg2"></div></section>
 <section class="slide gpage" style="--c:#1E5F74"><h2><span class="g-dot"></span>第3組 · 相互為用的印證</h2><div class="gbox" id="pg3"></div></section>
 <section class="slide gpage" style="--c:#6B5635"><h2><span class="g-dot"></span>第4組 · 相互為用的印證</h2><div class="gbox" id="pg4"></div></section>
 <section class="slide gpage" style="--c:#5C1A23"><h2><span class="g-dot"></span>第5組 · 相互為用的印證</h2><div class="gbox" id="pg5"></div></section>
 <section class="slide gpage" style="--c:#3E7D5A"><h2><span class="g-dot"></span>第6組 · 相互為用的印證</h2><div class="gbox" id="pg6"></div></section>
-<section class="slide gpage" style="--c:#4A3B6B"><h2><span class="g-dot"></span>第7組 · 相互為用的印證</h2><div class="gbox" id="pg7"></div></section>
-<section class="slide gpage" style="--c:#B15C2E"><h2><span class="g-dot"></span>第8組 · 相互為用的印證</h2><div class="gbox" id="pg8"></div></section>
 
 <!-- 學員精華摘錄（一） -->
 <section class="slide">
   <h2>你們寫得很好——幾段我特別想分享</h2>
   <p class="lead" style="max-width:none">課前的作業裡有許多深刻的印證。這些話，其實已經自己走到了今天的主題：</p>
   <div class="quote-wall" style="margin-top:1.2em">
-    <div class="qw" style="font-size:clamp(1.4rem,1.9vw,1.8rem);padding:.95em 1.3em">「唯有當我們越深入理解人的本質、人性的特徵，才能對人生方向與生命意義有更清楚的答案；反過來，在持續思索人生三問時，我們也會一次又一次回到『我是誰』與『人究竟是什麼』的追問。」<span class="by byline" style="font-size:.62em;margin-top:.5em">——01號鄭同學｜這正是「相互為用」：懂人，幫我懂人生；追問人生，又回頭讓我更懂人。</span></div>
-    <div class="qw" style="font-size:clamp(1.4rem,1.9vw,1.8rem);padding:.95em 1.3em">「從自然科學的角度看，人似乎只是一堆細胞與 DNA 的組合；但人不僅僅是生物，更是一個具有自我反省意識、能為自身行為負責的『位格』主體。」<span class="by byline" style="font-size:.62em;margin-top:.5em">——27號陳同學｜人不是各部分的相加；整體，從來不等於部分的總和。</span></div>
+    <div class="qw" style="font-size:clamp(1.4rem,1.9vw,1.8rem);padding:.95em 1.3em;color:var(--color-muted);font-style:italic">（此處為學員課前作業精華摘錄；台南班尚未繳交課前作業，將於上課後由老師補入。）</div>
+    <div class="qw" style="font-size:clamp(1.4rem,1.9vw,1.8rem);padding:.95em 1.3em;color:var(--color-muted);font-style:italic">（此處為學員課前作業精華摘錄；台南班尚未繳交課前作業，將於上課後由老師補入。）</div>
   </div>
 </section>
 
@@ -357,8 +353,8 @@ function showConfirm({title='確認',message='',okText='確定',cancelText='取�
   <h2>還有兩段，也值得一提</h2>
   <p class="lead" style="max-width:none">因為它們把「雙向」寫得很具體——不是抽象口號，而是真實發生的相互印證：</p>
   <div class="quote-wall" style="margin-top:1.2em">
-    <div class="qw" style="font-size:clamp(1.4rem,1.9vw,1.8rem);padding:.95em 1.3em">「因為親自去實踐了『不逃避受苦』的生命抉擇，我才真正懂了『人學概論』裡談的：人在苦難中能展現出更高的主體性。」<span class="by byline" style="font-size:.62em;margin-top:.5em">——27號陳同學｜答覆人生課題，反過來加深了人學的探索——這正是「雙向」最具體的樣子。</span></div>
-    <div class="qw" style="font-size:clamp(1.4rem,1.9vw,1.8rem);padding:.95em 1.3em">「人，無法在一次回答中被定義，而是在一生持續的追問與實踐中，逐漸成為自己。」<span class="by byline" style="font-size:.62em;margin-top:.5em">——48號袁同學｜這也正是康德對「人是什麼」最深的解答。</span></div>
+    <div class="qw" style="font-size:clamp(1.4rem,1.9vw,1.8rem);padding:.95em 1.3em;color:var(--color-muted);font-style:italic">（此處為學員課前作業精華摘錄；台南班尚未繳交課前作業，將於上課後由老師補入。）</div>
+    <div class="qw" style="font-size:clamp(1.4rem,1.9vw,1.8rem);padding:.95em 1.3em;color:var(--color-muted);font-style:italic">（此處為學員課前作業精華摘錄；台南班尚未繳交課前作業，將於上課後由老師補入。）</div>
   </div>
 </section>
 
@@ -810,7 +806,7 @@ if(location.hash){const n=parseInt(location.hash.slice(1));if(!isNaN(n))showSlid
 else{document.body.classList.toggle('no-clickzones',noClickZoneSlides.includes(1));}
 </script>
 
-<!-- ===================== 單元五 課前作業·八組印證 Firebase 即時投稿 ===================== -->
+<!-- ===================== 單元五 課前作業·六組印證 Firebase 即時投稿 ===================== -->
 <script>
 window.U5=(function(){
   var ROOM=window.FB_ROOM||'default';
@@ -820,7 +816,7 @@ window.U5=(function(){
   var configured=function(){return window.FB_CONFIG&&FB_CONFIG.apiKey&&FB_CONFIG.apiKey.indexOf('PASTE')<0;};
   var listify=function(o){return o?Object.keys(o).sort(function(a,b){return (o[a].t||0)-(o[b].t||0);}).map(function(k){return o[k].txt;}):[];};
   var root=null, online=false;
-  var TOP={1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[]};
+  var TOP={1:[],2:[],3:[],4:[],5:[],6:[]};
   var LK='u5_'+ROOM;
   function loadLocal(){try{var d=JSON.parse(localStorage.getItem(LK));if(d&&d.TOP)TOP=d.TOP;}catch(e){}}
   function saveLocal(){try{localStorage.setItem(LK,JSON.stringify({TOP:TOP}));}catch(e){}}
@@ -835,7 +831,7 @@ window.U5=(function(){
     try{
       firebase.initializeApp(window.FB_CONFIG);
       root=firebase.database().ref('rooms/'+ROOM);
-      [1,2,3,4,5,6,7,8].forEach(function(g){root.child('topics/g'+g).on('value',function(s){TOP[g]=listify(s.val()||{});renderTop(g);});});
+      [1,2,3,4,5,6].forEach(function(g){root.child('topics/g'+g).on('value',function(s){TOP[g]=listify(s.val()||{});renderTop(g);});});
       online=true; setStatus();
       return true;
     }catch(e){return false;}
@@ -855,7 +851,7 @@ window.U5=(function(){
   function csvCell(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';}
   function downloadCSV(stamp){
     var rows=[['房號','區段','內容']];
-    [1,2,3,4,5,6,7,8].forEach(function(g){(TOP[g]||[]).forEach(function(t){rows.push([ROOM,'第'+g+'組印證',t]);});});
+    [1,2,3,4,5,6].forEach(function(g){(TOP[g]||[]).forEach(function(t){rows.push([ROOM,'第'+g+'組印證',t]);});});
     var csv=rows.map(function(r){return r.map(csvCell).join(',');}).join('\r\n');
     var blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
     a.href=url;a.download='單元五人學探索_'+ROOM+'_'+stamp+'.csv';document.body.appendChild(a);a.click();a.remove();
@@ -870,12 +866,12 @@ window.U5=(function(){
         var val=snap.val(),fin=function(){root.remove();showToast('已下載 CSV＋雲端封存，並清空本場',3000);};
         if(val){firebase.database().ref('rooms/_archives/'+ROOM+'__'+stamp).set(val).then(fin,fin);}else fin();
       });
-    }else{TOP={1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[]};saveLocal();[1,2,3,4,5,6,7,8].forEach(function(g){renderTop(g);});showToast('已下載 CSV 並清空本場（本機）',3000);}
+    }else{TOP={1:[],2:[],3:[],4:[],5:[],6:[]};saveLocal();[1,2,3,4,5,6].forEach(function(g){renderTop(g);});showToast('已下載 CSV 並清空本場（本機）',3000);}
   }
   function initAll(){
     document.addEventListener('keydown',function(e){if(!e.shiftKey)return;if(e.key==='C'||e.key==='c'){e.preventDefault();clearCurrent();}else if(e.key==='E'||e.key==='e'){e.preventDefault();exportAndClear();}});
     if(!initFB())loadLocal();
-    [1,2,3,4,5,6,7,8].forEach(function(g){renderTop(g);});
+    [1,2,3,4,5,6].forEach(function(g){renderTop(g);});
     makeQRs(); setStatus();
   }
   if(document.readyState!=='loading')initAll();else document.addEventListener('DOMContentLoaded',initAll);
