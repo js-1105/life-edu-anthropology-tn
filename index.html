@@ -64,7 +64,27 @@ blockquote{font-family:var(--font-serif);font-style:italic;font-size:clamp(1.5re
 .section-divider .stage{font-size:clamp(1.1rem,2vw,1.5rem);color:var(--color-accent-soft);font-weight:700;letter-spacing:.3em;margin-bottom:.1em}
 .section-divider .num{font-family:var(--font-serif);font-size:clamp(4rem,13vw,10rem);font-weight:900;line-height:1;background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 4px 30px rgba(212,175,55,.3)}
 .section-divider h1{margin-top:.05em;color:#fff;text-shadow:0 2px 22px rgba(0,0,0,.25)}
-.section-divider .when{color:rgba(255,255,255,.82);margin-top:.5em;letter-spacing:.05em;max-width:34em}
+.section-divider .when{font-size:clamp(1.75rem,2.85vw,2.7rem);line-height:1.5;color:rgba(255,255,255,.88);margin-top:.6em;letter-spacing:.05em;max-width:34em}
+
+/* 🔴 章節分隔頁主題視覺＋進場動畫（教授 2026-07-24 訂：標題頁不可單調無聊） */
+.sec-art{position:absolute;right:3vw;top:50%;transform:translateY(-50%);width:33vw;max-width:480px;aspect-ratio:1/1;opacity:.19;color:var(--color-accent);pointer-events:none;z-index:0}
+.section-divider .num,.section-divider h1,.section-divider .when,.section-divider .stage{position:relative;z-index:1}
+@keyframes secDraw{from{stroke-dashoffset:900}to{stroke-dashoffset:0}}
+@keyframes secSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes secFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes secPulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.06);opacity:1}}
+@keyframes secTilt{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+@keyframes secRise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.slide.section-divider.active .sec-draw{stroke-dasharray:900;animation:secDraw 2.6s cubic-bezier(.4,0,.2,1) both}
+.slide.section-divider.active .sec-spin{transform-origin:100px 100px;animation:secSpin 3.2s cubic-bezier(.34,.03,.2,1) both}
+.slide.section-divider.active .sec-float{animation:secFloat 4.6s ease-in-out infinite}
+.slide.section-divider.active .sec-pulse{transform-origin:100px 100px;animation:secPulse 3.6s ease-in-out infinite}
+.slide.section-divider.active .sec-tilt{transform-origin:100px 60px;animation:secTilt 5s ease-in-out infinite}
+.slide.section-divider.active .sec-rise{animation:secRise .9s ease-out both}
+.slide.section-divider.active .sec-rise:nth-of-type(2){animation-delay:.15s}
+.slide.section-divider.active .sec-rise:nth-of-type(3){animation-delay:.3s}
+.slide.section-divider.active .sec-rise:nth-of-type(4){animation-delay:.45s}
+.slide.section-divider.active .sec-rise:nth-of-type(5){animation-delay:.6s}
 .slide.cover{background:var(--grad-royal);color:#fff;text-align:center;--ai:center;overflow:hidden}
 .slide.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(720px 460px at 50% 20%,rgba(212,175,55,.12),transparent 68%),linear-gradient(180deg,rgba(40,8,13,.04),rgba(40,8,13,.28));z-index:1}
 .slide.cover h1{color:#fff;font-size:clamp(2.6rem,6vw,5.2rem)} .slide.cover .lead{color:rgba(255,255,255,.9)}
@@ -284,6 +304,7 @@ function showConfirm({title='確認',message='',okText='確定',cancelText='取�
 
 <!-- ===================== 壹　從課前作業出發 ===================== -->
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><ellipse class="sec-rise" cx="62" cy="152" rx="15" ry="23" stroke-width="6"/><ellipse class="sec-rise" cx="100" cy="112" rx="15" ry="23" stroke-width="6"/><ellipse class="sec-rise" cx="138" cy="72" rx="15" ry="23" stroke-width="6"/><circle class="sec-pulse" cx="166" cy="38" r="10" stroke-width="6"/></svg>
   <div class="num">壹</div>
   <h1>從課前作業出發</h1>
   <p class="when">你們課前已思考過一個命題。我們就從你們的思考開始，一起把它接到今天的主題上。</p>
@@ -387,6 +408,7 @@ function showConfirm({title='確認',message='',okText='確定',cancelText='取�
 
 <!-- ===================== 貳　人為何探索人自己 ===================== -->
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="100" cy="86" rx="54" ry="64" stroke-width="7"/><line x1="100" y1="150" x2="100" y2="172" stroke-width="8"/><path d="M70 178 H130" stroke-width="8"/><g class="sec-pulse"><circle cx="100" cy="76" r="19" stroke-width="5"/><path d="M72 122 C79 102 121 102 128 122" stroke-width="5"/></g></svg>
   <div class="num">貳</div>
   <h1>人，為何要探索<br>「人」自己？</h1>
   <p class="when">在拆解「人是什麼」之前，先問一個更前面的問題：我們為什麼會想追問自己？</p>
@@ -449,6 +471,7 @@ function showConfirm({title='確認',message='',okText='確定',cancelText='取�
 
 <!-- ===================== 參　人學是什麼 ===================== -->
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><g class="sec-draw"><path d="M34 34 H84 A11 11 0 0 1 84 56 H116 A11 11 0 0 0 116 34 H166 V84 A11 11 0 0 0 144 84 V116 A11 11 0 0 1 166 116 V166 H116 A11 11 0 0 0 116 144 H84 A11 11 0 0 1 84 166 H34 Z" stroke-width="7"/></g></svg>
   <div class="num">參</div>
   <h1>人學，是什麼？</h1>
   <p class="when">要探索人，第一個難題不是答案，而是——這麼多面向，該從哪裡開始？</p>
@@ -513,6 +536,7 @@ function showConfirm({title='確認',message='',okText='確定',cancelText='取�
 
 <!-- ===================== 肆　人的完整圖像 ===================== -->
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><rect x="32" y="32" width="136" height="136" rx="9" stroke-width="7"/><g class="sec-draw"><line x1="100" y1="32" x2="100" y2="168" stroke-width="6"/><line x1="32" y1="100" x2="168" y2="100" stroke-width="6"/></g><circle class="sec-pulse" cx="66" cy="66" r="9" stroke-width="5"/><circle class="sec-pulse" cx="134" cy="66" r="9" stroke-width="5"/><circle class="sec-pulse" cx="66" cy="134" r="9" stroke-width="5"/><circle class="sec-pulse" cx="134" cy="134" r="9" stroke-width="5"/></svg>
   <div class="num">肆</div>
   <h1>人的完整圖像：<br>四個向度</h1>
   <p class="when">傳統存有學提出「結構、關係、過程」三個向度來理解存有，孫效智加上「脈絡」。四個向度，把人看全。</p>
@@ -602,6 +626,7 @@ function showConfirm({title='確認',message='',okText='確定',cancelText='取�
 
 <!-- ===================== 伍　回到人生大哉問 ===================== -->
 <section class="slide section-divider">
+  <svg class="sec-art" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><g class="sec-draw"><path d="M100 34 A66 66 0 1 1 52 56" stroke-width="8"/><path d="M34 36 L52 60 L78 48" stroke-width="7"/></g><circle class="sec-pulse" cx="100" cy="100" r="10" fill="currentColor" stroke="none"/></svg>
   <div class="num">伍</div>
   <h1>回到人生大哉問</h1>
   <p class="when">走過四個向度，我們回到起點的那個命題——人學，最終要服務的，是人生。</p>
