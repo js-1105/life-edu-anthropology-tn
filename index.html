@@ -156,6 +156,10 @@ body.no-clickzones .click-zones{display:none}
 .gpage .gbox::-webkit-scrollbar{width:10px}
 .gpage .gbox::-webkit-scrollbar-thumb{background:var(--c,#862633);border-radius:6px;border:2px solid rgba(255,255,255,.85)}
 .gitem{background:#fff;border-left:5px solid var(--c,#862633);border-radius:8px;box-shadow:var(--shadow-soft);padding:.6em .9em;font-size:clamp(1.55rem,1.9vw,1.85rem);line-height:1.55;white-space:pre-wrap}
+.gitem.gimg{padding:.45em}
+.gitem.gimg img{display:block;max-width:100%;max-height:34vh;border-radius:6px;cursor:zoom-in}
+.imglight{position:fixed;inset:0;z-index:400;background:rgba(20,10,12,.9);display:flex;align-items:center;justify-content:center;cursor:zoom-out}
+.imglight img{max-width:94vw;max-height:94vh;border-radius:10px}
 .gbox .empty-hint{margin:auto;font-size:clamp(1.55rem,1.9vw,1.75rem);color:var(--color-muted);font-style:italic;text-align:center;max-width:22em}
 #fbStatus{font-weight:700}
 /* 學員精華摘錄 */
@@ -691,9 +695,9 @@ function showConfirm({title='確認',message='',okText='確定',cancelText='取�
   <p class="egg-echo">整週的最後，人生三問，再次響起……</p>
   <div class="lyrics">
     <p><span class="h">〔主歌〕</span><br>天還沒亮　我就開始往前走<br>從沒問過　這條路通向哪個盡頭<br>有人問我　你要去哪裡<br>我才驚覺　我從沒問過　為什麼</p>
-    <p><span class="h">〔導歌〕</span><br>高更在畫布角落　顫抖地寫下<br>我們從何處來　我們是誰　又將往哪裡去<br>有人說　以終為始——先看見遠方那盞燈<br>於是我學著　把終點　放進每一個起點</p>
+    <p><span class="h">〔導歌〕</span><br>高更在畫布角落　顫抖地寫下<br>我們從何處來　我們是誰　<span style="white-space:nowrap">又將往哪裡去</span><br>有人說　以終為始——先看見<span style="white-space:nowrap">遠方那盞燈</span><br>於是我學著　把終點　放進<span style="white-space:nowrap">每一個起點</span></p>
     <p><span class="h">〔副歌〕</span><br>為何而活　為何而活<br>在每個天微亮的清晨　輕輕問自己<br>該怎麼活　該怎麼活<br>在每個十字路口　誠實地選一條路<br>如何活出　如何活出<br>讓我說過的話　和我走過的路　慢慢合而為一</p>
-    <p><span class="h">〔尾聲｜漸弱〕</span><br>為何活……該怎麼活……如何活出……<br>這，就是我的人生三問</p>
+    <p><span class="h">〔尾聲｜漸弱〕</span><br>為何活……該怎麼活……<span style="white-space:nowrap">如何活出……</span><br>這，就是我的人生三問</p>
   </div>
   <audio id="eggAudio" src="media/theme_song.m4a" preload="metadata"></audio>
   <div class="egg-player">
@@ -839,7 +843,7 @@ window.U5=(function(){
   var BASE=location.origin+location.pathname.replace(/[^/]*$/,'');
   var SUBMIT=BASE+'submit.html';
   var configured=function(){return window.FB_CONFIG&&FB_CONFIG.apiKey&&FB_CONFIG.apiKey.indexOf('PASTE')<0;};
-  var listify=function(o){return o?Object.keys(o).sort(function(a,b){return (o[a].t||0)-(o[b].t||0);}).map(function(k){return o[k].txt;}):[];};
+  var listify=function(o){return o?Object.keys(o).sort(function(a,b){return (o[a].t||0)-(o[b].t||0);}).map(function(k){return o[k].img?{img:o[k].img}:o[k].txt;}):[];};
   var root=null, online=false;
   var TOP={1:[],2:[],3:[],4:[],5:[],6:[]};
   var LK='u5_'+ROOM;
@@ -848,9 +852,25 @@ window.U5=(function(){
   function renderTop(g){
     var box=document.getElementById('pg'+g); if(!box)return;
     var a=TOP[g]||[];
-    box.innerHTML=a.length?a.map(function(t){return '<div class="gitem">'+esc(t)+'</div>';}).join('')
+    box.innerHTML=a.length?a.map(function(t){
+        if(t&&t.img)return '<div class="gitem gimg"><img src="'+t.img+'" alt="小組截圖" title="點一下放大"></div>';
+        return '<div class="gitem">'+esc(t)+'</div>';
+      }).join('')
       :'<div class="empty-hint">掃 QR 把你們這一組印證「相互為用」的要點打上來，這裡會即時出現。</div>';
   }
+  /* 點圖放大燈箱（Esc 或點一下關閉） */
+  document.addEventListener('click',function(e){
+    var im=e.target.closest&&e.target.closest('.gitem.gimg img');
+    if(!im)return;
+    var d=document.createElement('div');
+    d.className='imglight';
+    d.innerHTML='<img src="'+im.src+'" alt="小組截圖">';
+    var onKey=function(ev){if(ev.key==='Escape'){ev.stopPropagation();close();}};
+    var close=function(){d.remove();document.removeEventListener('keydown',onKey);};
+    d.onclick=close;
+    document.addEventListener('keydown',onKey);
+    document.body.appendChild(d);
+  });
   function initFB(){
     if(!configured()||typeof firebase==='undefined')return false;
     try{
@@ -876,7 +896,7 @@ window.U5=(function(){
   function csvCell(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';}
   function downloadCSV(stamp){
     var rows=[['房號','區段','內容']];
-    [1,2,3,4,5,6].forEach(function(g){(TOP[g]||[]).forEach(function(t){rows.push([ROOM,'第'+g+'組印證',t]);});});
+    [1,2,3,4,5,6].forEach(function(g){(TOP[g]||[]).forEach(function(t){rows.push([ROOM,'第'+g+'組印證',(t&&t.img)?'[截圖：CSV 不含圖檔，清空前請於雲端另存]':t]);});});
     var csv=rows.map(function(r){return r.map(csvCell).join(',');}).join('\r\n');
     var blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
     a.href=url;a.download='單元五人學探索_'+ROOM+'_'+stamp+'.csv';document.body.appendChild(a);a.click();a.remove();
